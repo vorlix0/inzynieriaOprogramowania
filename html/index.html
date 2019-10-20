@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="app1">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>PZ2019</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+    
+<body class="workarea" ng-controller="Ctrl1 as ctrl">
+    
+    <div class="container">
+
+		<h1>Konto</h1>
+	
+        <h3>Saldo <span ng-bind="ctrl.konto.saldo"></span></h3>
+        <p>Limit <span ng-bind="ctrl.konto.limit"></span></p>
+        
+        <p>Operacja
+            <select class="form-inline" ng-model="ctrl.transakcja.operacja">
+                <option value="wy">Wypłata</option>
+                <option value="wp">Wpłata</option>
+            </select>
+            <input class="form-inline" type="number" ng-model="ctrl.transakcja.kwota"/>
+            <button class="btn btn-primary" ng-click="ctrl.robTransakcje()" ng-disabled="ctrl.formInvalid()">Zrób</button>
+        </p>
+
+        <p>Ostatni komunikat z serwera
+            <span class="badge" ng-bind="ctrl.message"></span>
+        </p>
+
+        <p>Historia
+            <table class="table">
+                <tr>
+                    <th>Data</th>
+                    <th>Operacja</th>
+                    <th style="text-align: right;">Kwota</th>
+                    <th style="text-align: right;">Saldo po</th>
+                </tr>
+                <tr ng-repeat="wpis in ctrl.historia">
+                    <td ng-bind="wpis.data"></td>
+                    <td ng-bind="wpis.operacja"></td>
+                    <td ng-bind="wpis.kwota" style="text-align: right;"></td>
+                    <td ng-bind="wpis.saldo" style="text-align: right;"></td>
+                </tr>
+        </table>
+        </p>
+	</div>
+    
+<script src="/js/angular.min.js"></script>
+<script src="/js/ui-bootstrap-tpls.min.js"></script>
+
+<script src="/js/app.js"></script>
+
+</body></html>
